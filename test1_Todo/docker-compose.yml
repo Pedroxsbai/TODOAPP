@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  todoapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: todoapp-container
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8080
+    volumes:
+      # Persister les logs en dehors du container
+      - ./Logs:/app/Logs
+    restart: unless-stopped
+    networks:
+      - todoapp-network
+
+networks:
+  todoapp-network:
+    driver: bridge
