@@ -1,136 +1,115 @@
-# 📝 Todo Application – ASP.NET Core MVC
+# Todo Application - ASP.NET Core MVC
 
 <div align="center">
 
-**Application de gestion de tâches avec architecture SOLID**
+**Application de gestion de taches avec architecture SOLID**
 
 </div>
 
 ---
 
-## 📖 À propos du projet
+## A propos du projet
 
-Ce projet est une application Todo développée avec ASP.NET Core MVC.  
-L'objectif n'était pas seulement de "faire marcher" l'application, mais surtout de structurer le code correctement, appliquer les principes SOLID, et comprendre pourquoi on fait certaines choses (services, filtres, DI…).
+Ce projet est une application Todo developpee avec ASP.NET Core MVC.  
+L'objectif n'etait pas seulement de "faire marcher" l'application, mais surtout de structurer le code correctement, appliquer les principes SOLID, et comprendre pourquoi on fait certaines choses (services, filtres, DI...).
 
-### ✨ L'application inclut :
+### L'application inclut :
 
-- ✅ authentification basée sur les sessions
-- ✅ gestion du thème dark / light
-- ✅ logging des actions utilisateurs
-- ✅ une architecture claire et maintenable
+- authentification basee sur les sessions
+- gestion du theme dark / light
+- logging des actions utilisateurs
+- une architecture claire et maintenable
 
 ---
 
-## 🎯 Objectif pédagogique du projet
+## Objectif pedagogique du projet
 
 Ce projet m'a permis de :
 
-- 🧠 comprendre concrètement les principes SOLID
-- 📚 apprendre à séparer les responsabilités
-- 💉 utiliser correctement Dependency Injection
-- 🎭 distinguer Controller / Service / Filter
-- 📈 améliorer la lisibilité et l'évolutivité du code
+- comprendre concretement les principes SOLID
+- apprendre a separer les responsabilites
+- utiliser correctement Dependency Injection
+- distinguer Controller / Service / Filter
+- ameliorer la lisibilite et l'evolutivite du code
 
-> Le code a évolué progressivement : certaines parties ont été refactorisées après réflexion, ce qui m'a aidé à mieux comprendre les bonnes pratiques.
+> Le code a evolue progressivement : certaines parties ont ete refactorisees apres reflexion, ce qui m'a aide a mieux comprendre les bonnes pratiques.
 
 ---
 
-## 🔹 Principes SOLID appliqués
+## Principes SOLID appliques
 
-### 1️⃣ Single Responsibility Principle (SRP)
+### 1. Single Responsibility Principle (SRP)
 
-> Une classe doit avoir une seule responsabilité et une seule raison de changer.
+> Une classe doit avoir une seule responsabilite et une seule raison de changer.
 
-#### 🔸 Exemple : Logging
+#### Exemple : Logging
 
-Au début, le filtre de logging faisait trop de choses :
+Au debut, le filtre de logging faisait trop de choses :
 
 ```
-❌ LoggingFilter (ancienne version)
-- Interception des requêtes
-- Récupération des infos (user, controller, action)
+LoggingFilter (ancienne version)
+- Interception des requetes
+- Recuperation des infos (user, controller, action)
 - Gestion des fichiers
-- Écriture du log
+- Ecriture du log
 - Gestion du multi-threading
 ```
 
-Après refactorisation :
+Apres refactorisation :
 
 ```
-✅ LoggingFilter
+LoggingFilter
 - Intercepte l'action
-- Récupère les infos
-- Délègue le log
+- Recupere les infos
+- Delegue le log
 
-✅ FileLoggingService
-- Gère uniquement l'écriture du log
+FileLoggingService
+- Gere uniquement l'ecriture du log
 ```
 
-👉 Chaque classe a maintenant une responsabilité claire.
+Chaque classe a maintenant une responsabilite claire.
 
-#### 🔸 Exemple : Gestion du thème
+#### Exemple : Gestion du theme
 
-Même logique pour le thème :
+Meme logique pour le theme :
 
 ```
 ThemeController
-→ gère uniquement la requête HTTP
+-> gere uniquement la requete HTTP
 
 ThemeService
-→ contient la logique métier (toggle + cookies)
+-> contient la logique metier (toggle + cookies)
 
 ThemeFilter
-→ injecte automatiquement le thème dans les vues
+-> injecte automatiquement le theme dans les vues
 ```
 
-**Résultat :**
-- ✅ code plus lisible
-- ✅ plus facile à modifier
-- ✅ responsabilités bien séparées
+**Resultat :**
+- code plus lisible
+- plus facile a modifier
+- responsabilites bien separees
 
 ---
 
-### 2️⃣ Open / Closed Principle (OCP)
+### 2. Open / Closed Principle (OCP)
 
-> Le code est ouvert à l'extension, mais fermé à la modification.
+> Le code est ouvert a l'extension, mais ferme a la modification.
 
-Exemple avec le logging :
-
-```csharp
-public class FileLoggingService : ILoggingService
-{
-    public void LogAction(string userName, string controller, string action)
-    {  
-
-    }
-}
-```
-
-Aucun changement dans le filtre, seulement dans Program.cs :
-
-```csharp
-builder.Services.AddSingleton<ILoggingService, DatabaseLoggingService>();
-```
+L'architecture permet d'ajouter de nouvelles implementations de logging (par exemple pour une base de donnees) sans modifier le code existant des filtres. Il suffirait de creer une nouvelle classe implementant `ILoggingService` et de changer l'injection dans `Program.cs`.
 
 ---
 
-### 3️⃣ Liskov Substitution Principle (LSP)
+### 3. Liskov Substitution Principle (LSP)
 
-Toutes les implémentations de ILoggingService sont interchangeables :
+`FileLoggingService` respecte le contrat de l'interface `ILoggingService`. Il peut etre utilise partout ou l'interface est attendue sans casser le fonctionnement de l'application.
 
-```csharp
-ILoggingService logger = new FileLoggingService();
-ILoggingService logger = new DatabaseLoggingService();
-```
-
-Le LoggingFilter fonctionne sans savoir laquelle est utilisée.
+Le LoggingFilter ne connait pas l'implementation concrete, il utilise simplement l'interface.
 
 ---
 
-### 4️⃣ Interface Segregation Principle (ISP)
+### 4. Interface Segregation Principle (ISP)
 
-Les interfaces sont simples et ciblées :
+Les interfaces sont simples et ciblees :
 
 ```csharp
 public interface ILoggingService
@@ -139,38 +118,38 @@ public interface ILoggingService
 }
 ```
 
-Pas de méthodes inutiles, chaque interface a un but précis.
+Pas de methodes inutiles, chaque interface a un but precis.
 
 ---
 
-### 5️⃣ Dependency Inversion Principle (DIP)
+### 5. Dependency Inversion Principle (DIP)
 
-Les classes dépendent des interfaces, pas des implémentations concrètes.
+Les classes dependent des interfaces, pas des implementations concretes.
 
-❌ **Mauvais :**
+**Mauvais :**
 
 ```csharp
 new FileLoggingService();
 ```
 
-✅ **Bon :**
+**Bon :**
 
 ```csharp
 public LoggingFilter(ILoggingService loggingService)
 ```
 
 Cela rend le code :
-- ✅ testable
-- ✅ flexible
-- ✅ moins couplé
+- testable
+- flexible
+- moins couple
 
 ---
 
-## 🛠️ Bonnes pratiques utilisées
+## Bonnes pratiques utilisees
 
-### 🔹 Dependency Injection (DI)
+### Dependency Injection (DI)
 
-Toutes les dépendances sont déclarées dans Program.cs :
+Toutes les dependances sont declarees dans Program.cs :
 
 ```csharp
 builder.Services.AddSingleton<ILoggingService, FileLoggingService>();
@@ -178,27 +157,27 @@ builder.Services.AddScoped<IThemeService, ThemeService>();
 builder.Services.AddScoped<ISessionManagerService, SessionManagerService>();
 ```
 
-**Choix des durées de vie :**
-- **Singleton** → logging (une seule instance, thread-safe)
-- **Scoped** → services liés à la requête HTTP
+**Choix des durees de vie :**
+- **Singleton** -> logging (une seule instance, thread-safe)
+- **Scoped** -> services lies a la requete HTTP
 
 ---
 
-### 🔹 Service Layer Pattern
+### Service Layer Pattern
 
-La logique métier est déplacée dans des services :
+La logique metier est deplacee dans des services :
 
-- **SessionManagerService** → gestion des sessions (JSON)
-- **FileLoggingService** → logging thread-safe
-- **ThemeService** → gestion du thème et des cookies
+- **SessionManagerService** -> gestion des sessions (JSON)
+- **FileLoggingService** -> logging thread-safe
+- **ThemeService** -> gestion du theme et des cookies
 
 Les controllers restent simples et lisibles.
 
 ---
 
-### 🔹 Filter Pattern
+### Filter Pattern
 
-Utilisation des filtres pour les préoccupations transversales :
+Utilisation des filtres pour les preoccupations transversales :
 
 ```csharp
 [ServiceFilter(typeof(LoggingFilter))]
@@ -207,11 +186,11 @@ Utilisation des filtres pour les préoccupations transversales :
 public class TodoController : Controller
 ```
 
-Cela évite la duplication de code dans chaque action.
+Cela evite la duplication de code dans chaque action.
 
 ---
 
-### 🔹 Thread Safety (Logging)
+### Thread Safety (Logging)
 
 Le logging utilise un verrou statique :
 
@@ -222,62 +201,64 @@ lock (_lockObject)
 }
 ```
 
-Cela évite les conflits d'écriture lorsque plusieurs requêtes arrivent en même temps.
+Cela evite les conflits d'ecriture lorsque plusieurs requetes arrivent en meme temps.
 
 ---
 
-### 🔹 Sécurité des cookies
+### Securite des cookies
 
 ```csharp
 HttpOnly = true
 ```
 
-- ✅ protège contre l'accès JavaScript
-- ✅ limite les risques XSS
+- protege contre l'acces JavaScript
+- limite les risques XSS
 
 ---
 
-## 📁 Structure du projet
+## Structure du projet
 
 ```
-Controllers/   → gestion HTTP
-Services/      → logique métier
-Filtres/       → logging, thème, auth
-Models/        → entités
-ViewModels/    → données pour les vues
-Mappers/       → conversion VM ↔ Model
-Logs/          → fichiers de log
+Controllers/   -> gestion HTTP
+Services/      -> logique metier
+Filtres/       -> logging, theme, auth
+Models/        -> entites
+ViewModels/    -> donnees pour les vues
+Mappers/       -> conversion VM <-> Model
+Logs/          -> fichiers de log
 ```
 
-Chaque dossier a un rôle clair.
+Chaque dossier a un role clair.
 
 ---
 
-## 🚀 Fonctionnalités principales
+## Fonctionnalites principales
 
-- ✅ Authentification par session
-- ✅ Gestion des tâches Todo
-- ✅ Dark / Light mode avec persistance
-- ✅ Logging automatique des actions utilisateurs
-- ✅ Architecture claire et maintenable
-
----
-
-## 🎓 Ce que j'ai appris avec ce projet
-
-- ✅ appliquer SOLID dans un vrai projet
-- ✅ comprendre quand utiliser un service ou un filtre
-- ✅ refactoriser un code existant
-- ✅ écrire un code plus propre et plus professionnel
-- ✅ penser en termes de responsabilités, pas seulement de fonctionnalités
+- Authentification par session
+- Gestion des taches Todo
+- Dark / Light mode avec persistance
+- Logging automatique des actions utilisateurs
+- Dockerisation complete de l'application (Dockerfile + docker-compose)
+- Architecture claire et maintenable
 
 ---
 
-## 🧠 Principe clé du projet
+## Ce que j'ai appris avec ce projet
+
+- appliquer SOLID dans un vrai projet
+- comprendre quand utiliser un service ou un filtre
+- refactoriser un code existant
+- ecrire un code plus propre et plus professionnel
+- penser en termes de responsabilites, pas seulement de fonctionnalites
+- creer un conteneur et deployer l'application sur Docker
+
+---
+
+## Principe cle du projet
 
 <div align="center">
 
 > **Un bon code n'est pas seulement un code qui marche,**  
-> **mais un code qui peut évoluer sans tout casser.**
+> **mais un code qui peut evoluer sans tout casser.**
 
 </div>
