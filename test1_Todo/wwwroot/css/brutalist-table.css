@@ -1,0 +1,220 @@
+/* Neobrutalist Table Styles */
+.table-brutalist-container {
+    margin: 40px auto;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.table-brutalist-container h1 {
+    font-family: 'Courier New', monospace;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--primary);
+    text-align: center;
+}
+
+.table-brutalist {
+    width: 100%;
+    border: 3px solid #000;
+    box-shadow: 8px 8px 0px #000;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #fff;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 30px;
+}
+
+.table-brutalist thead {
+    background-color: #000;
+    color: #fff;
+}
+
+.table-brutalist thead th {
+    padding: 15px 20px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 16px;
+    border-right: 3px solid #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.table-brutalist thead th:last-child {
+    border-right: none;
+}
+
+.table-brutalist tbody tr {
+    border-bottom: 3px solid #000;
+    transition: all 0.2s;
+}
+
+.table-brutalist tbody tr:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px #000;
+}
+
+.table-brutalist tbody tr:last-child {
+    border-bottom: none;
+}
+
+.table-brutalist tbody td {
+    padding: 15px 20px;
+    border-right: 3px solid #000;
+    font-size: 15px;
+}
+
+.table-brutalist tbody td:last-child {
+    border-right: none;
+}
+
+/* Status Badges with Bootstrap Colors */
+.status-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 3px solid #000;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
+    box-shadow: 3px 3px 0px #000;
+    transition: all 0.2s;
+}
+
+.status-badge:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px #000;
+}
+
+/* Todo Status - Yellow/Warning */
+.status-todo {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+/* Doing Status - Cyan/Info */
+.status-doing {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+/* Done Status - Green/Success */
+.status-done {
+    background-color: #28a745;
+    color: #fff;
+}
+
+/* Add Todo Button */
+.btn-brutalist-add {
+    display: inline-block;
+    padding: 14px 28px;
+    background-color: #FF5E5B;
+    color: #fff;
+    border: 3px solid #000;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s;
+    font-family: 'Courier New', monospace;
+    text-decoration: none;
+    box-shadow: 6px 6px 0px #000;
+}
+
+.btn-brutalist-add:hover {
+    box-shadow: 8px 8px 0px #000;
+    transform: translate(-3px, -3px);
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    border: 3px solid #000;
+    background-color: #f8f9fa;
+    box-shadow: 8px 8px 0px #000;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 30px;
+}
+
+.empty-state p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #000;
+    font-weight: 600;
+}
+
+.empty-state a {
+    color: #FF5E5B;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.empty-state a:hover {
+    color: #000;
+}
+
+/* Dark Theme Support */
+body.dark .table-brutalist {
+    background-color: #1a1a1a;
+    border-color: #fff;
+    box-shadow: 8px 8px 0px #fff;
+}
+
+body.dark .table-brutalist thead {
+    background-color: #fff;
+    color: #000;
+}
+
+body.dark .table-brutalist thead th {
+    border-right-color: #000;
+}
+
+body.dark .table-brutalist tbody tr {
+    border-bottom-color: #fff;
+}
+
+body.dark .table-brutalist tbody tr:hover {
+    box-shadow: 4px 4px 0px #fff;
+}
+
+body.dark .table-brutalist tbody td {
+    border-right-color: #fff;
+    color: #fff;
+}
+
+body.dark .status-badge {
+    border-color: #fff;
+    box-shadow: 3px 3px 0px #fff;
+}
+
+body.dark .status-badge:hover {
+    box-shadow: 5px 5px 0px #fff;
+}
+
+body.dark .btn-brutalist-add {
+    border-color: #fff;
+    box-shadow: 6px 6px 0px #fff;
+}
+
+body.dark .btn-brutalist-add:hover {
+    box-shadow: 8px 8px 0px #fff;
+}
+
+body.dark .empty-state {
+    border-color: #fff;
+    background-color: #2a2a2a;
+    box-shadow: 8px 8px 0px #fff;
+    color: #fff;
+}
+
+body.dark .empty-state p {
+    color: #fff;
+}
+
+body.dark .table-brutalist-container h1 {
+    color: #fff;
+}

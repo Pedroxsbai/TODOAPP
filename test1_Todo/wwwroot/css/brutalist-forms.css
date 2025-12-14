@@ -1,0 +1,194 @@
+/* Neobrutalist Form Styles */
+:root {
+    --primary: #000000;
+    --secondary: #FFFFFF;
+    --accent: #FF5E5B;
+    --shadow: 8px 8px 0px var(--primary);
+}
+
+/* Form Container Neobrutalist Style */
+.form-brutalist-container {
+    width: 100%;
+    max-width: 500px;
+    border: 3px solid var(--primary);
+    padding: 40px 30px;
+    background-color: var(--secondary);
+    box-shadow: var(--shadow);
+    position: relative;
+    border-radius: 12px;
+    margin: 40px auto;
+}
+
+.form-brutalist-container::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: -6px;
+    bottom: -6px;
+    border: 3px solid var(--primary);
+    z-index: -1;
+    border-radius: 12px;
+}
+
+.form-brutalist-container h1 {
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+}
+
+.form-brutalist-container h4 {
+    color: var(--primary);
+    margin-bottom: 30px;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+}
+
+.form-brutalist-container .form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-brutalist-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--primary);
+    font-family: 'Courier New', monospace;
+}
+
+.form-brutalist-container input[type="text"],
+.form-brutalist-container input[type="email"],
+.form-brutalist-container input[type="password"],
+.form-brutalist-container input[type="date"],
+.form-brutalist-container input[type="datetime-local"],
+.form-brutalist-container textarea,
+.form-brutalist-container select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 3px solid var(--primary);
+    background-color: var(--secondary);
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s;
+    font-family: 'Courier New', monospace;
+    border-radius: 0;
+}
+
+.form-brutalist-container input:focus,
+.form-brutalist-container textarea:focus,
+.form-brutalist-container select:focus {
+    box-shadow: 4px 4px 0px var(--primary);
+    transform: translate(-2px, -2px);
+}
+
+.form-brutalist-container textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-brutalist-container .btn-brutalist {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--accent);
+    color: var(--secondary);
+    border: 3px solid var(--primary);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s;
+    font-family: 'Courier New', monospace;
+    border-radius: 0;
+}
+
+.form-brutalist-container .btn-brutalist:hover {
+    box-shadow: 6px 6px 0px var(--primary);
+    transform: translate(-3px, -3px);
+}
+
+.form-brutalist-container .btn-brutalist:active {
+    box-shadow: 2px 2px 0px var(--primary);
+    transform: translate(-1px, -1px);
+}
+
+/* Radio buttons styling */
+.form-brutalist-container .radio-group {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.form-brutalist-container .radio-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+}
+
+.form-brutalist-container input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--primary);
+    cursor: pointer;
+    accent-color: var(--accent);
+}
+
+/* Validation messages */
+.form-brutalist-container .text-danger {
+    color: var(--accent);
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+}
+
+/* Back link styling */
+.brutalist-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--primary);
+    font-weight: bold;
+    text-decoration: underline;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s;
+}
+
+.brutalist-link:hover {
+    color: var(--accent);
+    transform: translate(2px, 0);
+}
+
+/* Dark theme support */
+body.dark .form-brutalist-container {
+    --primary: #FFFFFF;
+    --secondary: #1a1a1a;
+    --accent: #FF5E5B;
+    --shadow: 8px 8px 0px var(--primary);
+    background-color: var(--secondary);
+}
+
+body.dark .form-brutalist-container input[type="text"],
+body.dark .form-brutalist-container input[type="email"],
+body.dark .form-brutalist-container input[type="password"],
+body.dark .form-brutalist-container input[type="date"],
+body.dark .form-brutalist-container input[type="datetime-local"],
+body.dark .form-brutalist-container textarea,
+body.dark .form-brutalist-container select {
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+body.dark .form-brutalist-container h1,
+body.dark .form-brutalist-container h4,
+body.dark .form-brutalist-container label {
+    color: var(--primary);
+}

@@ -1,0 +1,112 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+/* Dark theme styles */
+body.dark {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark .navbar {
+  background-color: #2d2d2d !important;
+}
+
+body.dark .navbar-light .navbar-brand,
+body.dark .navbar-light .nav-link {
+  color: #e0e0e0 !important;
+}
+
+body.dark .navbar-light .nav-link:hover {
+  color: #66b3ff !important;
+}
+
+body.dark .table {
+  color: #e0e0e0;
+  background-color: #2d2d2d;
+}
+
+body.dark .table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark .btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+body.dark .btn-outline-secondary {
+  color: #e0e0e0;
+  border-color: #6c757d;
+}
+
+body.dark .btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+body.dark .footer {
+  background-color: #2d2d2d;
+  color: #aaa;
+}
+
+body.dark .border-top {
+  border-color: #444 !important;
+}
+
+body.dark .border-bottom {
+  border-color: #444 !important;
+}
+
+body.dark .box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(255, 255, 255, .05) !important;
+}
+
+body.dark a {
+  color: #66b3ff;
+}
+
+body.dark a:hover {
+  color: #99ccff;
+}
+
+body.dark .form-control {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+body.dark .form-control:focus {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+  border-color: #66b3ff;
+}

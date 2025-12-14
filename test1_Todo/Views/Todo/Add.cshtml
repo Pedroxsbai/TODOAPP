@@ -1,0 +1,66 @@
+﻿@model test1_Todo.ViewModels.todoAddVM
+@using test1_Todo.Enum 
+
+@{
+    ViewData["Title"] = "Add Todo";
+}
+
+<link rel="stylesheet" href="~/css/brutalist-forms.css" asp-append-version="true" />
+
+<div class="form-brutalist-container">
+    <h1>Ajouter un Todo</h1>
+    <h4>Créez une nouvelle tâche</h4>
+    
+    <form asp-action="Add">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+        <div class="form-group">
+            <label asp-for="Libelle" class="control-label">Titre</label>
+            <input asp-for="Libelle" class="form-control" placeholder="Titre de la tâche" />
+            <span asp-validation-for="Libelle" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="description" class="control-label">Description</label>
+            <textarea asp-for="description" class="form-control" placeholder="Décrivez votre tâche..."></textarea>
+            <span asp-validation-for="description" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="datelimite" class="control-label">Date limite</label>
+            <input asp-for="datelimite" class="form-control" type="datetime-local" />
+            <span asp-validation-for="datelimite" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="Statut" class="control-label">Statut</label>
+            <div class="radio-group">
+                <div class="radio-item">
+                    <input asp-for="Statut" type="radio" value="@(State.Todo)" checked id="todo" />
+                    <label for="todo" style="margin-bottom: 0;">Todo</label>
+                </div>
+                <div class="radio-item">
+                    <input asp-for="Statut" type="radio" value="@State.Doing" id="doing" />
+                    <label for="doing" style="margin-bottom: 0;">Doing</label>
+                </div>
+                <div class="radio-item">
+                    <input asp-for="Statut" type="radio" value="@State.Done" id="done" />
+                    <label for="done" style="margin-bottom: 0;">Done</label>
+                </div>
+            </div>
+            <span asp-validation-for="Statut" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <input type="submit" value="Créer" class="btn-brutalist" />
+        </div>
+    </form>
+    
+    <div style="text-align: center;">
+        <a asp-action="Index" class="brutalist-link">← Retour à la liste</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

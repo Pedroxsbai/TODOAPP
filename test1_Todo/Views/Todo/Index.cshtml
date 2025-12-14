@@ -1,0 +1,70 @@
+﻿@model List<test1_Todo.Models.Todo>
+@using test1_Todo.Enum
+
+@{
+    ViewData["Title"] = "Todo List";
+}
+
+<link rel="stylesheet" href="~/css/brutalist-table.css" asp-append-version="true" />
+
+<div class="table-brutalist-container">
+    <h1>📝 Todo List</h1>
+    
+    @if (Model != null && Model.Any())
+    {
+        <table class="table-brutalist">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Date Limite</th>
+                    <th>Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var todo in Model)
+                {
+                    <tr>
+                        <td><strong>@todo.libelle</strong></td>
+                        <td>@todo.description</td>
+                        <td>@todo.DateLimite.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>
+                            @{
+                                var statusClass = "";
+                                var statusText = "";
+                                
+                                if (todo.Status == State.Todo)
+                                {
+                                    statusClass = "status-todo";
+                                    statusText = "📋 TODO";
+                                }
+                                else if (todo.Status == State.Doing)
+                                {
+                                    statusClass = "status-doing";
+                                    statusText = "⚡ DOING";
+                                }
+                                else if (todo.Status == State.Done)
+                                {
+                                    statusClass = "status-done";
+                                    statusText = "✅ DONE";
+                                }
+                            }
+                            <span class="status-badge @statusClass">@statusText</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="empty-state">
+            <p>🎯 Aucune tâche pour le moment!</p>
+            <p><a asp-action="Add">Ajoutez votre première tâche ici!</a></p>
+        </div>
+    }
+    
+    <div style="text-align: center;">
+        <a asp-action="Add" class="btn-brutalist-add">➕ Ajouter une tâche</a>
+    </div>
+</div>

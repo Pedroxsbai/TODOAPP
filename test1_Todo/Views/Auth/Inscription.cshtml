@@ -1,0 +1,46 @@
+﻿@model test1_Todo.ViewModels.AuthVM
+
+@{
+    ViewData["Title"] = "Inscription";
+}
+
+<link rel="stylesheet" href="~/css/brutalist-forms.css" asp-append-version="true" />
+
+<div class="form-brutalist-container">
+    <h1>Inscription</h1>
+    <h4>Créez votre compte</h4>
+    
+    <form asp-action="Inscription" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+        <div class="form-group">
+            <label asp-for="Nom" class="control-label">Nom</label>
+            <input asp-for="Nom" class="form-control" placeholder="Entrez votre nom" />
+            <span asp-validation-for="Nom" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="Email" class="control-label">Email</label>
+            <input asp-for="Email" class="form-control" placeholder="exemple@email.com" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="Password" class="control-label">Mot de passe</label>
+            <input asp-for="Password" class="form-control" placeholder="••••••••" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <input type="submit" value="S'inscrire" class="btn-brutalist" />
+        </div>
+    </form>
+    
+    <div style="text-align: center;">
+        <a asp-controller="Todo" asp-action="Index" class="brutalist-link">← Retour à la liste</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
