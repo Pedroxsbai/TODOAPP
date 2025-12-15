@@ -2,7 +2,6 @@
 
 <div align="center">
 
-**Application de gestion de taches avec architecture SOLID**
 
 </div>
 
